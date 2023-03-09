@@ -1,0 +1,5 @@
+.env
+comment_hashes.txt
+current_page.txt
+venv
+__pycache__
