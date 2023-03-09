@@ -66,8 +66,8 @@ def main():
 
     # Aguarda o tempo configurado na variável de ambiente WAIT
     wait_time = int(os.getenv('WAIT', '300'))
-    print(f'\n\nWaiting: {int(wait_time / 60)} minutes')
-    time.sleep(wait_time)
+    print(f'\n\nWaiting: {int(wait_time)} minutes')
+    time.sleep(wait_time * 60)
 
     # Recomeça o processo
     main()
