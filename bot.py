@@ -13,8 +13,11 @@ load_dotenv()
 # Inicializa o bot do Telegram
 bot = telegram.Bot(token=os.getenv('TELEGRAM_BOT_TOKEN'))
 
+if not os.path.exists('data'):
+    os.makedirs('data')
+
 # Nome do arquivo para armazenar os hashes dos comentários
-HASHES_FILENAME = 'comment_hashes.txt'
+HASHES_FILENAME = './data/comment_hashes.txt'
 
 
 def main():
@@ -23,7 +26,7 @@ def main():
 
     # Verifica a última página processada da discussão
     try:
-        with open('current_page.txt', 'r') as f:
+        with open('./data/current_page.txt', 'r') as f:
             start_page = int(f.read())
     except FileNotFoundError:
         start_page = 1
@@ -61,7 +64,7 @@ def main():
             f.write(comment_hash + '\n')
 
     # Salva a última página processada
-    with open('current_page.txt', 'w') as f:
+    with open('./data/current_page.txt', 'w') as f:
         f.write(str(current_page))
 
     # Aguarda o tempo configurado na variável de ambiente WAIT
